@@ -1,5 +1,5 @@
 var api = {
-  url: 'http://examen-laboratoria-sprint-5.herokuapp.com/'
+  url: 'https://examen-laboratoria-sprint-5.herokuapp.com/topics'
 };
 
 var $listaTopics = $("#lista-topics");
@@ -15,9 +15,9 @@ var cargarTopics = function () {
   });
 };
 
-var crearTopic = function (topic) {
-  var nombre = topic.author_name;
-  var tema = topic.content[0];
+var crearTopic = function (content) {
+  var nombre = content.author_name;
+  var tema = content.content[0];
   // creamos la fila
   var $tr = $("<tr />");
   // creamos la celda del nombre
