@@ -1,44 +1,49 @@
 var api = {
-  url: 'https://examen-laboratoria-sprint-5.herokuapp.com/'
+  url: 'http://examen-laboratoria-sprint-5.herokuapp.com/'
 };
 
-var $listaComentarios = $("#lista-topics");
-var $plantillaFinal = "";
+var $listaTopics = $("#lista-topics");
 
 var cargarPagina = function () {
-  cargarComentarios();
-  $("#add-form").submit(agregarComentario);
+  cargarTopics();
+  $("#add-form").submit(agregarTopics);
 };
 
-var plantilla = 
-'<tr>' +
-  '<td>__autor__</td>' +
-  '<td>__topic__</td>' +
-'</tr>';
-
-var crearComentario = function(topic){
-   plantillaFinal += plantilla.replace("__autor__", comentario.autor)
-     .replace("__topic__", comentario.topic);
- };
-
-var cargarComentarios = function (){
-  $.getJSON(api.url, function(topics){
-    topics.forEach(crearComentario);
-    $('#lista-comentarios').html(plantillaFinal);
+var cargarTopics = function () {
+  $.getJSON(api.url, function (topics) {
+    topics.forEach(crearTopic);
   });
 };
 
-var agregarComentario = function (e) {
+var crearTopic = function (topic) {
+  var nombre = topic.author_name;
+  var tema = topic.content[0];
+  // creamos la fila
+  var $tr = $("<tr />");
+  // creamos la celda del nombre
+  var $nombreTd = $("<td />");
+  $nombreTd.text(nombre);
+  // creamos la celda del estado
+  var $temaTd = $("<td />");
+  $temaTd.text(tema);
+  // agregamos las celdas a la fila
+  $tr.append($nombreTd);
+  $tr.append($temaTd);
+  // agregamos filas a la tabla
+  $listaTopics.append($tr);
+};
+
+var agregarTarea = function (e) {
   e.preventDefault();
-  var nombre = $("#nombre-comentario").val();
-  var comentario = $("#comentario").val();
+  var nombre = $("#author_name").val();
+  var tema = $("#comentario").val();
   $.post(api.url, {
-    autor: nombre,
-    topic:comentario
+    author_name: nombre,
+    content: tema
   }, function (topic) {
-    crearComentario(comentario);
+    crearTopic(topic);
     $("#myModal").modal("hide");
-  });
+  }); 
 };
 
 $(document).ready(cargarPagina);
