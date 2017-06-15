@@ -4,15 +4,49 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Proyecto 5</title>
   </head>
   <body>
 
-    <h1>Aqui van todos los temas</h1>
+    <h1>Foro</h1>
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+    CREAR TEMA
+    </button>
+
+    <table class="table table-striped">
+      <thead>
+        <th>Comentario</th>
+        <th>Respuestas</th>
+      </thead>
+      <tbody id="lista-topics">
+
+      </tbody>
+    </table>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <form>
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Nuevo comentario</h4>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Autor" id="nombre-comentario">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="3" placeholder="Comentario" id="comentario"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
     
