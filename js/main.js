@@ -6,12 +6,12 @@ var $listaTopics = $("#lista-topics");
 
 var cargarPagina = function () {
   cargarTopics();
-  $("#add-form").submit(agregarTopics);
+  $("#add-form").submit(agregarTopic);
 };
 
 var cargarTopics = function () {
-  $.getJSON(api.url, function (topics) {
-    topics.forEach(crearTopic);
+  $.getJSON(api.url, function (contents) {
+    contents.forEach(crearTopic);
   });
 };
 
@@ -33,9 +33,9 @@ var crearTopic = function (topic) {
   $listaTopics.append($tr);
 };
 
-var agregarTarea = function (e) {
+var agregarTopic = function (e) {
   e.preventDefault();
-  var nombre = $("#author_name").val();
+  var nombre = $("#autor").val();
   var tema = $("#comentario").val();
   $.post(api.url, {
     author_name: nombre,
